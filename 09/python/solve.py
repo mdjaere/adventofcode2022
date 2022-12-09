@@ -9,22 +9,22 @@ DIR = {"R": (0, +1),
        "D": (-1, 0)}
 
 
-def solve(n_knots):
-    knots = [(0, 0)] * n_knots
+def solve(n):
+    knots = [(0, 0)] * n
     seen = set([knots[-1]])
     for line in lines:
         c, v = line
-        for step_i in range(int(v)):
+        for _ in range(int(v)):
             dir = DIR[c]
-            knots[0] = (int(knots[0][0] + dir[0]), int(knots[0][1] + dir[1]))
-            for knot_i in range(len(knots) - 1):
-                diff = (knots[knot_i][0] - knots[knot_i + 1][0],
-                        knots[knot_i][1] - knots[knot_i + 1][1])
+            knots[0] = (knots[0][0] + dir[0], knots[0][1] + dir[1])
+            for i in range(len(knots) - 1):
+                diff = (knots[i][0] - knots[i + 1][0],
+                        knots[i][1] - knots[i + 1][1])
                 if 2 in diff or -2 in diff:
-                    to_move = [x/2 if abs(x) == 2 else x for x in diff]
-                    knots[knot_i + 1] = (int(knots[knot_i + 1][0] + to_move[0]),
-                                         int(knots[knot_i + 1][1] + to_move[1]))
-            seen.add(knots[-1])
+                    to_move = [int(x/2) if abs(x) == 2 else x for x in diff]
+                    knots[i + 1] = (knots[i + 1][0] + to_move[0],
+                                         knots[i + 1][1] + to_move[1])
+            seen.add(k[-1])
     return len(seen)
 
 
