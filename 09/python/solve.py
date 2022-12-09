@@ -24,7 +24,7 @@ def solve(n):
                     to_move = [int(x/2) if abs(x) == 2 else x for x in diff]
                     knots[i + 1] = (knots[i + 1][0] + to_move[0],
                                          knots[i + 1][1] + to_move[1])
-            seen.add(k[-1])
+            seen.add(knots[-1])
     return len(seen)
 
 
