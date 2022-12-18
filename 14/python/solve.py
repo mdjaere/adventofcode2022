@@ -20,7 +20,7 @@ for line in lines:
 
 def settle_grain(grain, solids):
     gr_x, gr_y = grain
-    if gr_y == max_y + 1:
+    if gr_y > max_y:
         return grain
     candidates = [
         (gr_x, gr_y + 1),
